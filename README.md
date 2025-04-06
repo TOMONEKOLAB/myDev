@@ -83,13 +83,13 @@ __Info : If you don't need ".gitkeep", you can remove it.__
 
 ## How to start or end noVNC
 
- 1. If you want to start noVNC, Please input below command in the container.
-    ```
-    st
-    ```
- 2. After that, you can watch and use the screen via Web browser or VSCode.  
+### If you want to start noVNC, Please input below command in the container.
+```
+st
+```
+After that, you can watch and use the screen via Web browser or VSCode.  
 
-If you want to end noVNC, Please input below command in the container.
+### If you want to end noVNC, Please input below command in the container.
 
 ```
 fin
