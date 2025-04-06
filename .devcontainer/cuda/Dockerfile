@@ -1,0 +1,37 @@
+FROM nvidia/cuda:12.8.0-cudnn-devel-ubuntu20.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    DISPLAY=:1 \
+    XDG_RUNTIME_DIR=/tmp/runtime-root \
+    LANG=ja_JP.UTF-8 \
+    LC_ALL=ja_JP.UTF-8
+
+USER root
+
+WORKDIR /root
+
+# instration of packages
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends\
+    # package tools
+    pkg-config software-properties-common \
+    # C, C++
+    build-essential cmake \
+    # Python
+    python3 python3-venv python3-pip python3-tk python-is-python3 \
+    # tools
+    git git-lfs git-extras curl sudo wget unzip nano locales vim htop tree gnuplot net-tools \
+    # noVNC
+    novnc websockify x11vnc lxde xvfb xterm dbus-x11 \
+    # JP-env
+    && locale-gen ja_JP.UTF-8 \
+    && update-locale LANG=ja_JP.UTF-8 \
+    # delete cache
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/cache/apt/archives/* \
+    && rm -rf /var/lib/apt/lists/*
+
+# alias
+RUN echo "alias st='source ~/setup/startvnc.sh'" >> ~/.bashrc \
+    && echo "alias fin='source ~/setup/finishvnc.sh'" >> ~/.bashrc \
+    && echo "alias make-algo='make -C /root/c/algo/lib/utils'" >> ~/.bashrc

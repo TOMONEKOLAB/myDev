@@ -1,0 +1,32 @@
+{
+    "name": "C&C++",
+    "build": {
+        "dockerfile":"./Dockerfile"
+    },
+    "runArgs": [
+        "--net", "host",
+        "--rm"
+    ],
+    "workspaceFolder": "/root/c",
+    "workspaceMount": "source=${localWorkspaceFolder}/C_C++,target=/root/c,type=bind",
+    "mounts": [
+        "source=${localWorkspaceFolder}/.devcontainer/setup,target=/root/setup,type=bind",
+        "source=${localWorkspaceFolder}/myUtil/c,target=/root/c/myUtil/c,type=bind",
+        "source=${localWorkspaceFolder}/myUtil/c++,target=/root/c/myUtil/c++,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/c/share,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "twxs.cmake",
+                "ms-vscode-remote.remote-containers",
+                "oderwat.indent-rainbow",
+                "MS-CEINTL.vscode-language-pack-ja",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode"
+            ]
+        }
+    }
+}

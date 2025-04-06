@@ -1,0 +1,30 @@
+{
+    "name": "Java",
+    "build": {
+        "dockerfile":"./Dockerfile"
+    },
+    "runArgs": [
+        "--net", "host",
+        "--rm"
+    ],
+    "workspaceFolder": "/root/java",
+    "workspaceMount": "source=${localWorkspaceFolder}/Java,target=/root/java,type=bind",
+    "mounts": [
+        "source=${localWorkspaceFolder}/myUtil/java,target=/root/java/myUtil,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/java/share,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "oderwat.indent-rainbow",
+                "vscjava.vscode-java-pack",
+                "Oracle.oracle-java",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-java-test",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode"
+            ]
+        }
+    }
+}
