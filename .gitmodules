@@ -1,0 +1,3 @@
+[submodule "myUtil"]
+	path = myUtil
+	url = https://github.com/TOMONEKOLAB/myUtil.git
