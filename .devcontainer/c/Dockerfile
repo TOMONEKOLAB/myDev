@@ -49,5 +49,4 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
 
 # alias
 RUN echo "alias st='source ~/setup/startvnc.sh'" >> ~/.bashrc \
-    && echo "alias fin='source ~/setup/finishvnc.sh'" >> ~/.bashrc \
-    && echo "alias make-algo='make -C /root/c/algo/lib/utils'" >> ~/.bashrc
+    && echo "alias fin='source ~/setup/finishvnc.sh'" >> ~/.bashrc
