@@ -25,7 +25,8 @@
                 "MS-CEINTL.vscode-language-pack-ja",
                 "mhutchie.git-graph",
                 "donjayamanne.githistory",
-                "marp-team.marp-vscode"
+                "marp-team.marp-vscode",
+                "ms-vscode.hexeditor"
             ]
         }
     }

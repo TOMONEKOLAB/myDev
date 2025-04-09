@@ -12,7 +12,8 @@
     "workspaceMount": "source=${localWorkspaceFolder}/Cuda,target=/root/cuda,type=bind",
     "mounts": [
         "source=${localWorkspaceFolder}/.devcontainer/setup,target=/root/setup,type=bind",
-        "source=${localWorkspaceFolder}/myUtil,target=/root/cuda/myUtil,type=bind"
+        "source=${localWorkspaceFolder}/myUtil/cuda,target=/root/cuda/myUtil,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/cuda/share,type=bind"
     ],
     "customizations": {
         "vscode": {
@@ -24,7 +25,8 @@
                 "MS-CEINTL.vscode-language-pack-ja",
                 "mhutchie.git-graph",
                 "donjayamanne.githistory",
-                "marp-team.marp-vscode"
+                "marp-team.marp-vscode",
+                "ms-vscode.hexeditor"
             ]
         }
     }

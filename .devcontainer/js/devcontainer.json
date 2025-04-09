@@ -21,7 +21,8 @@
                 "donjayamanne.githistory",
                 "marp-team.marp-vscode",
                 "ritwickdey.LiveServer",
-                "ms-vscode.live-server"
+                "ms-vscode.live-server",
+                "ms-vscode.hexeditor"
             ]
         }
     }
