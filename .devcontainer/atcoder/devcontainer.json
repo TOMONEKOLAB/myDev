@@ -1,0 +1,32 @@
+{
+    "name": "AtCoder",
+    "dockerComposeFile" :[
+        "./../docker-compose.yml"
+    ],
+    "service": "atcoder",
+    "runServices": [
+        "atcoder"
+    ],
+    "workspaceFolder": "/root/atcoder",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/atcoder/share,type=bind",
+        "source=${localWorkspaceFolder}/myUtil,target=/root/atcoder/myUtil,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "twxs.cmake",
+                "ms-vscode-remote.remote-containers",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "donjayamanne.python-extension-pack",
+                "oderwat.indent-rainbow",
+                "MS-CEINTL.vscode-language-pack-ja",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode"
+            ]
+        }
+    }
+}

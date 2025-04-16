@@ -1,0 +1,14 @@
+{
+    "name": "Elasticsearch",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "elasticsearch",
+    "runServices": [
+        "elasticsearch"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

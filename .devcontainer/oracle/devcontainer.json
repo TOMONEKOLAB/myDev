@@ -1,0 +1,14 @@
+{
+    "name": "Oracle Database",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "oracle",
+    "runServices": [
+        "oracle"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

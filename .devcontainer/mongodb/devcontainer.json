@@ -1,0 +1,14 @@
+{
+    "name": "MongoDB",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "mongodb",
+    "runServices": [
+        "mongodb"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "SQLite",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "sqlite-web",
+    "runServices": [
+        "sqlite-web"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

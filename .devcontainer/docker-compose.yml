@@ -1,0 +1,250 @@
+services:
+  atcoder:
+    container_name: atcoder
+    image: atcoder
+    build:
+      context: ./atcoder
+      dockerfile: Dockerfile
+    volumes:
+      - ./../AtCoder:/root/atcoder
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  cassandra:
+    image: cassandra:4
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./../DataBase/cassandra:/var/lib/cassandra
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  c_cpp:
+    container_name: c_cpp
+    image: c_cpp
+    build:
+      context: ./c_cpp
+      dockerfile: Dockerfile
+    volumes:
+      - ./../C&C++:/root/c_cpp
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  cuda:
+    container_name: cu
+    image: cu
+    build:
+      context: ./cu
+      dockerfile: Dockerfile
+    volumes:
+      - ./../Cuda:/root/cuda
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - ./../DataBase/es:/usr/share/elasticsearch/data
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  gui:
+    container_name: gui
+    image: gui
+    build:
+      context: ./gui
+      dockerfile: Dockerfile
+    volumes:
+      - ./../GUI:/root
+    tty:
+      true
+    ports:
+      - "6080:6080"
+    networks:
+      - gui-net
+      - db-net
+
+  java:
+    container_name: java
+    image: java
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    volumes:
+      - ./../Java:/root/java
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  javascript:
+    container_name: js
+    image: js
+    build:
+      context: ./js
+      dockerfile: Dockerfile
+    volumes:
+      - ./../JavaScript:/root/js
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: testdb
+      MARIADB_USER: user
+      MARIADB_PASSWORD: pass
+    volumes:
+      - ./../DataBase/maria:/var/lib/mysql
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    volumes:
+      - ./../DataBase/mongo:/data/db
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-lts
+    container_name: mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Strong!Pass123"
+    volumes:
+      - ./../DataBase/mssql:/var/opt/mssql
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - ./../DataBase/mysql:/var/lib/mysql
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  oracle:
+    image: container-registry.oracle.com/database/express:21.3.0
+    container_name: oracle-xe
+    environment:
+      ORACLE_PWD: "OraclePwd123"
+      ORACLE_ALLOW_REMOTE: "true"
+    volumes:
+      - ./../DataBase/oracle:/opt/oracle/oradata
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: testdb
+    volumes:
+      - ./../DataBase/postgres:/var/lib/postgresql/data
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  python:
+    container_name: py
+    image: py
+    build:
+      context: ./py
+      dockerfile: Dockerfile
+    volumes:
+      - ./../Python:/root/py
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  redis:
+    image: redis:7
+    container_name: redis
+    volumes:
+      - ./../DataBase/redis:/data
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+  sqlite-web:
+    image: coleifer/sqlite-web
+    container_name: sqlite-web
+    volumes:
+      - ./../DataBase/sqlite:/data
+    command: sqlite-web /data/test.db
+    tty:
+      true
+    networks:
+      - gui-net
+      - db-net
+
+networks:
+  gui-net:
+    name: gui-net
+  db-net:
+    name: db-net

@@ -1,0 +1,14 @@
+{
+    "name": "PostgreSQL",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "postgres",
+    "runServices": [
+        "postgres"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

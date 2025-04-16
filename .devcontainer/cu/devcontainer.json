@@ -1,0 +1,30 @@
+{
+    "name": "Cuda",
+    "dockerComposeFile" :[
+        "./../docker-compose.yml"
+    ],
+    "service": "cuda",
+    "runServices": [
+        "cuda"
+    ],
+    "workspaceFolder": "/root/cuda",
+    "mounts": [
+        "source=${localWorkspaceFolder}/myUtil/cu,target=/root/cuda/myUtil,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/cuda/share,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "twxs.cmake",
+                "ms-vscode-remote.remote-containers",
+                "oderwat.indent-rainbow",
+                "MS-CEINTL.vscode-language-pack-ja",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode",
+                "ms-vscode.hexeditor"
+            ]
+        }
+    }
+}

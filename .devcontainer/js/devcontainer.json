@@ -1,0 +1,28 @@
+{
+    "name": "JavaScript",
+    "dockerComposeFile" :[
+        "./../docker-compose.yml"
+    ],
+    "service": "javascript",
+    "runServices": [
+        "javascript"
+    ],
+    "workspaceFolder": "/root/js",
+    "mounts": [
+        "source=${localWorkspaceFolder}/myUtil/js,target=/root/js/myUtil,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/js/share,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "oderwat.indent-rainbow",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode",
+                "ritwickdey.LiveServer",
+                "ms-vscode.live-server",
+                "ms-vscode.hexeditor"
+            ]
+        }
+    }
+}

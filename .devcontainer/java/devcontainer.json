@@ -1,0 +1,30 @@
+{
+    "name": "Java",
+    "dockerComposeFile" :[
+        "./../docker-compose.yml"
+    ],
+    "service": "java",
+    "runServices": [
+        "java"
+    ],
+    "workspaceFolder": "/root/java",
+    "mounts": [
+        "source=${localWorkspaceFolder}/myUtil/java,target=/root/java/myUtil,type=bind",
+        "source=${localWorkspaceFolder}/Share,target=/root/java/share,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "oderwat.indent-rainbow",
+                "vscjava.vscode-java-pack",
+                "Oracle.oracle-java",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-java-test",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "marp-team.marp-vscode",
+                "ms-vscode.hexeditor"
+            ]
+        }
+    }
+}

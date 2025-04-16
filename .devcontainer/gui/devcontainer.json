@@ -1,0 +1,14 @@
+{
+    "name": "GUI",
+    "dockerComposeFile" :[
+        "./../docker-compose.yml"
+    ],
+    "service": "gui",
+    "runServices": [
+        "gui"
+    ],
+    "workspaceFolder": "/root/Desktop",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/Desktop/share,type=bind"
+    ]
+}

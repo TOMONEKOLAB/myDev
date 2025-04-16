@@ -1,0 +1,14 @@
+{
+    "name": "Cassandra",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "cassandra",
+    "runServices": [
+        "cassandra"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

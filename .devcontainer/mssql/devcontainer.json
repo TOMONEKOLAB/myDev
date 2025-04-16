@@ -1,0 +1,14 @@
+{
+    "name": "Microsoft SQL Server",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "mssql",
+    "runServices": [
+        "mssql"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}

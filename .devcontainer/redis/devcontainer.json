@@ -1,0 +1,14 @@
+{
+    "name": "Redis",
+    "dockerComposeFile" :[
+        "./../../docker-compose.yml"
+    ],
+    "service": "redis",
+    "runServices": [
+        "redis"
+    ],
+    "workspaceFolder": "/root/db",
+    "mounts": [
+        "source=${localWorkspaceFolder}/Share,target=/root/db/share,type=bind"
+    ]
+}
