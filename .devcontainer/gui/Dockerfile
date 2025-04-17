@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     # Excel (openpyxl)
     libreoffice libreoffice-draw libreoffice-l10n-ja libreoffice-dmaths libreoffice-ogltrans libreoffice-writer2xhtml libreoffice-help-ja \
     # tools
-    git git-lfs git-extras curl sudo wget unzip nano locales vim htop tree gnuplot \
+    git git-lfs git-extras curl sudo wget unzip nano locales vim htop tree gnuplot dos2unix \
     # JP-env
     fonts-takao fonts-vlgothic fonts-noto-cjk \
     && locale-gen ja_JP.UTF-8 \
@@ -32,6 +32,6 @@ COPY startup.sh /opt/startup.sh
 
 COPY shutdown.sh /opt/shutdown.sh
 
-RUN chmod +x /opt/startup.sh
+RUN chmod +x /opt/startup.sh && dos2unix /opt/startup.sh
 
-RUN chmod +x /opt/shutdown.sh
+RUN chmod +x /opt/shutdown.sh && dos2unix /opt/shutdown.sh
