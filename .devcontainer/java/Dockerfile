@@ -1,8 +1,6 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    DISPLAY=:1 \
-    XDG_RUNTIME_DIR=/tmp/runtime-root \
     LANG=ja_JP.UTF-8 \
     LC_ALL=ja_JP.UTF-8
 

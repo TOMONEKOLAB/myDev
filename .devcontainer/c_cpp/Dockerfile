@@ -1,17 +1,12 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    DISPLAY=:1 \
-    XDG_RUNTIME_DIR=/tmp/runtime-root \
     LANG=ja_JP.UTF-8 \
     LC_ALL=ja_JP.UTF-8
 
 USER root
 
 WORKDIR /root/c_cpp
-
-# Set a Japanese mirror for apt sources
-RUN sed -i.bak -e 's|http://archive.ubuntu.com/ubuntu/|http://ftp.jaist.ac.jp/pub/Linux/ubuntu/|g' /etc/apt/sources.list
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     software-properties-common \
