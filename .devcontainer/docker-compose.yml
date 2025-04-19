@@ -1,4 +1,16 @@
+version: "3.9"
+
+# 共通設定部分
+x-common-settings: &common-settings
+  tty: true
+  volumes:
+    - ./apt-fast.conf:/etc/apt-fast.conf:ro
+  networks:
+    - gui-net
+    - db-net
+
 services:
+  # AtCoderサービス
   atcoder:
     container_name: atcoder
     image: atcoder
@@ -7,12 +19,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../AtCoder:/root/atcoder
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # Cassandraデータベースサービス
   cassandra:
     image: cassandra:4
     container_name: cassandra
@@ -20,12 +29,9 @@ services:
       - "9042:9042"
     volumes:
       - ./../DataBase/cassandra:/var/lib/cassandra
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # C/C++ 開発環境
   c_cpp:
     container_name: c_cpp
     image: c_cpp
@@ -34,12 +40,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../C&C++:/root/c_cpp
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # CUDA 開発環境
   cuda:
     container_name: cu
     image: cu
@@ -55,12 +58,9 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # Elasticsearchサービス
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
     container_name: elasticsearch
@@ -70,12 +70,9 @@ services:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
     volumes:
       - ./../DataBase/es:/usr/share/elasticsearch/data
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # GUIサービス（noVNC）
   gui:
     container_name: gui
     image: gui
@@ -84,14 +81,11 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../GUI:/root/Desktop
-    tty:
-      true
+    <<: *common-settings
     ports:
       - "6080:6080"
-    networks:
-      - gui-net
-      - db-net
 
+  # Java開発環境
   java:
     container_name: java
     image: java
@@ -100,12 +94,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../Java:/root/java
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # JavaScript開発環境
   javascript:
     container_name: js
     image: js
@@ -114,12 +105,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../JavaScript:/root/js
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # MariaDBデータベース
   mariadb:
     image: mariadb:11
     container_name: mariadb
@@ -130,23 +118,17 @@ services:
       MARIADB_PASSWORD: pass
     volumes:
       - ./../DataBase/maria:/var/lib/mysql
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # MongoDBデータベース
   mongodb:
     image: mongo:7
     container_name: mongodb
     volumes:
       - ./../DataBase/mongo:/data/db
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # MSSQLデータベース
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-lts
     container_name: mssql
@@ -155,12 +137,9 @@ services:
       SA_PASSWORD: "Strong!Pass123"
     volumes:
       - ./../DataBase/mssql:/var/opt/mssql
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # MySQLデータベース
   mysql:
     image: mysql:8.0
     container_name: mysql
@@ -171,12 +150,9 @@ services:
       MYSQL_PASSWORD: pass
     volumes:
       - ./../DataBase/mysql:/var/lib/mysql
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # Oracleデータベース
   oracle:
     image: container-registry.oracle.com/database/express:21.3.0
     container_name: oracle-xe
@@ -185,12 +161,9 @@ services:
       ORACLE_ALLOW_REMOTE: "true"
     volumes:
       - ./../DataBase/oracle:/opt/oracle/oradata
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # PostgreSQLデータベース
   postgres:
     image: postgres:15
     container_name: postgres
@@ -200,12 +173,9 @@ services:
       POSTGRES_DB: testdb
     volumes:
       - ./../DataBase/postgres:/var/lib/postgresql/data
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # Python開発環境
   python:
     container_name: py
     image: py
@@ -214,34 +184,24 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./../Python:/root/py
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # Redisデータベース
   redis:
     image: redis:7
     container_name: redis
     volumes:
       - ./../DataBase/redis:/data
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
+  # SQLite-webサービス
   sqlite-web:
     image: coleifer/sqlite-web
     container_name: sqlite-web
     volumes:
       - ./../DataBase/sqlite:/data
     command: sqlite-web /data/test.db
-    tty:
-      true
-    networks:
-      - gui-net
-      - db-net
+    <<: *common-settings
 
 networks:
   gui-net:
