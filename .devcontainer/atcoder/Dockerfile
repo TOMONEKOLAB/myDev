@@ -9,6 +9,9 @@ USER root
 
 WORKDIR /root/atcoder
 
+# Set a Japanese mirror for apt sources
+RUN sed -i.bak -e 's|http://archive.ubuntu.com/ubuntu/|http://ftp.jaist.ac.jp/pub/Linux/ubuntu/|g' /etc/apt/sources.list
+
 # instllation of packages
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     # package tools
