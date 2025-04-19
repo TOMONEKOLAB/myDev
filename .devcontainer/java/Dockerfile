@@ -30,7 +30,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     && rm -rf /var/lib/apt/lists/*
 
 # instration of packages
-RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends\
+RUN apt-fast update && apt-fast upgrade -y && apt-fast install -y --no-install-recommends \
     # package tools
     pkg-config software-properties-common \
     # Java
