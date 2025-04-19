@@ -13,10 +13,26 @@ WORKDIR /root/c_cpp
 # Set a Japanese mirror for apt sources
 RUN sed -i.bak -e 's|http://archive.ubuntu.com/ubuntu/|http://ftp.jaist.ac.jp/pub/Linux/ubuntu/|g' /etc/apt/sources.list
 
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/cache/apt/archives/* \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN add-apt-repository -y ppa:apt-fast/stable
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+    apt-fast \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/cache/apt/archives/* \
+    && rm -rf /var/lib/apt/lists/*
+
 # instration of packages
-RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends\
+RUN apt-fast update && apt-fast upgrade -y && apt-fast install -y --no-install-recommends \
     # package tools
-    pkg-config software-properties-common \
+    pkg-config \
     # C, C++
     build-essential cmake \
     # OpenCL
