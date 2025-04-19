@@ -8,9 +8,6 @@ USER root
 
 WORKDIR /root/js
 
-# Set a Japanese mirror for apt sources
-RUN sed -i.bak -e 's|http://archive.ubuntu.com/ubuntu/|http://ftp.jaist.ac.jp/pub/Linux/ubuntu/|g' /etc/apt/sources.list
-
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     software-properties-common \
     && apt-get autoremove -y \
