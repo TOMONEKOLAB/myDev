@@ -83,7 +83,7 @@ services:
       context: ./gui
       dockerfile: Dockerfile
     volumes:
-      - ./../GUI:/root
+      - ./../GUI:/root/Desktop
     tty:
       true
     ports:
